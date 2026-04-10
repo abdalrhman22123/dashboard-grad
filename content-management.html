@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Content Management — CarOS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="content-management.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar" id="sidebar" aria-label="Main navigation">
+      <div class="sidebar__brand">
+        <div class="sidebar__logo" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 17h14l-1-7H6l-1 7zM6 17v3h4v-3M14 17v3h4v-3"/>
+            <path d="M7 10l1-5h8l1 5"/>
+          </svg>
+        </div>
+        <span class="sidebar__title">CarOS</span>
+        <button type="button" class="sidebar__close" id="sidebarClose" aria-label="Close menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <nav class="sidebar__nav">
+        <a class="nav-link" href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg><span>Dashboard</span></a>
+        <a class="nav-link" href="audience-analytics.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19h16M6 17V9l6-4 6 4v8"/><circle cx="8" cy="13" r="1.5"/><circle cx="16" cy="13" r="1.5"/></svg><span>Application</span></a>
+        <a class="nav-link nav-link--active" href="content-management.html" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s8-4.5 8-11a8 8 0 10-16 0c0 6.5 8 11 8 11z"/><circle cx="12" cy="10" r="3"/></svg><span>Edit</span></a>
+        <a class="nav-link" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg><span>Oil Monitor</span></a>
+        <a class="nav-link" href="performance-insights.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19V5"/><path d="M4 19h16"/><path d="M8 17V9"/><path d="M12 17V5"/><path d="M16 17v-5"/></svg><span>Insights</span></a>
+        <a class="nav-link" href="driver-profile.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>Profile</span></a>
+        <a class="nav-link" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg><span>Settings</span></a>
+      </nav>
+
+      <div class="sidebar__footer">
+        <div class="premium-card">
+          <p class="premium-card__label">Premium Member</p>
+          <p class="premium-card__sub">All features unlocked.</p>
+        </div>
+      </div>
+    </aside>
+
+    <div class="overlay" id="overlay" aria-hidden="true"></div>
+
+    <div class="main-wrap">
+      <button type="button" class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="sidebar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      </button>
+
+      <header class="topbar cm-topbar">
+        <div class="topbar__inner">
+          <div class="topbar__welcome">
+            <h1>Content Management</h1>
+            <p>Edit website content, images, and SEO settings</p>
+          </div>
+          <div class="cm-actionbar">
+            <button class="cm-btn" id="saveStatusBtn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="10"/></svg>
+              <span id="saveStatusText">Last saved: 2 minutes ago</span>
+            </button>
+            <button class="cm-btn" id="resetBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>Reset</button>
+            <button class="cm-btn" id="previewBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg>Preview</button>
+            <button class="cm-btn cm-btn--primary" id="saveBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/></svg>Save Changes</button>
+          </div>
+        </div>
+      </header>
+
+      <main class="page cm-wrap">
+        <section class="cm-card">
+          <div class="cm-tabs" role="tablist" aria-label="Editor tabs">
+            <button class="cm-tab is-active" role="tab" aria-selected="true" data-tab-target="contentPanel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19h16M6 17V9l6-4 6 4v8"/></svg>Content &amp; Images</button>
+            <button class="cm-tab" role="tab" aria-selected="false" data-tab-target="seoPanel"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42"/></svg>SEO Settings</button>
+          </div>
+        </section>
+
+        <section class="cm-card cm-panel" id="contentPanel">
+          <div class="cm-headline">
+            <h2>Text Content Editor</h2>
+          </div>
+
+          <div class="cm-sections">
+            <button class="cm-pill is-active" data-section="hero">Hero Section</button>
+            <button class="cm-pill" data-section="features">Features</button>
+            <button class="cm-pill" data-section="pricing">Pricing</button>
+            <button class="cm-pill" data-section="testimonials">Testimonials</button>
+            <button class="cm-pill" data-section="footer">Footer</button>
+          </div>
+
+          <div class="cm-toolbar" aria-label="Formatting toolbar">
+            <button class="cm-tool" data-format="bold" title="Bold"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 4h12M9 20V4M15 20V4"/></svg></button>
+            <button class="cm-tool" data-format="heading" title="Heading"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 4h12M6 12h12M6 20h12"/></svg></button>
+            <button class="cm-tool" data-format="bullet" title="Bullet"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/></svg></button>
+          </div>
+
+          <div class="cm-field">
+            <label>Title</label>
+            <input class="cm-input" id="titleInput" maxlength="60" value="Take Control of Your Car" />
+            <p class="cm-help"><span id="titleCount">34</span> / 60 characters</p>
+          </div>
+
+          <div class="cm-field">
+            <label>Subtitle</label>
+            <input class="cm-input" id="subtitleInput" maxlength="80" value="The Ultimate Smart Car Companion" />
+            <p class="cm-help"><span id="subtitleCount">52</span> / 80 characters</p>
+          </div>
+
+          <div class="cm-field">
+            <label>Description</label>
+            <textarea class="cm-textarea" id="descriptionInput" maxlength="200">Control your vehicle from anywhere with our advanced mobile app. Climate control, security, diagnostics, and entertainment—all in your pocket.</textarea>
+            <p class="cm-help"><span id="descriptionCount">163</span> / 200 characters</p>
+          </div>
+
+          <div class="cm-field">
+            <label>Preview</label>
+            <div class="cm-preview" id="previewCard">
+              <p class="cm-preview__tag" id="previewSubtitle">The Ultimate Smart Car Companion</p>
+              <h3 id="previewTitle">Take Control of Your Car</h3>
+              <p id="previewDescription">Control your vehicle from anywhere with our advanced mobile app. Climate control, security, diagnostics, and entertainment—all in your pocket.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="cm-card cm-panel cm-panel--hidden" id="seoPanel">
+          <div class="cm-headline">
+            <h2>SEO Settings</h2>
+          </div>
+          <div class="cm-field">
+            <label>Meta Title</label>
+            <input class="cm-input" value="CarOS - Smart Car Companion App" maxlength="60">
+          </div>
+          <div class="cm-field">
+            <label>Meta Description</label>
+            <textarea class="cm-textarea" maxlength="160">Manage your vehicle remotely with CarOS. Control climate, monitor health, and stay connected wherever you are.</textarea>
+          </div>
+          <div class="cm-field">
+            <label>Keywords</label>
+            <input class="cm-input" value="car app, remote control, connected car, diagnostics">
+          </div>
+        </section>
+
+        <section class="cm-card">
+          <div class="cm-files-head">
+            <h2>Image Manager</h2>
+            <button class="cm-btn cm-btn--primary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>Upload</button>
+          </div>
+
+          <div class="cm-search">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+            <input type="search" id="imageSearchInput" placeholder="Search images..." />
+          </div>
+
+          <div class="cm-file-list" id="fileList">
+            <article class="cm-file" data-search="hero-background.jpg hero">
+              <div class="cm-thumb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
+              <div class="cm-file__info">
+                <p class="cm-file__name">hero-background.jpg</p>
+                <p class="cm-file__meta">Hero</p>
+              </div>
+              <div class="cm-file__meta-row">
+                <p class="cm-file__col">1.2 MB</p>
+                <p class="cm-file__col">1920×1080</p>
+                <p class="cm-file__col">2024-09-15</p>
+              </div>
+              <div class="cm-file__actions">
+                <button class="cm-icbtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></button>
+                <button class="cm-icbtn danger"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M19 6l-1 14H6L5 6"/></svg></button>
+              </div>
+            </article>
+
+            <article class="cm-file" data-search="feature-climate.jpg feature">
+              <div class="cm-thumb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
+              <div class="cm-file__info">
+                <p class="cm-file__name">feature-climate.jpg</p>
+                <p class="cm-file__meta">Feature</p>
+              </div>
+              <div class="cm-file__meta-row">
+                <p class="cm-file__col">0.8 MB</p>
+                <p class="cm-file__col">900×600</p>
+                <p class="cm-file__col">2024-09-11</p>
+              </div>
+              <div class="cm-file__actions">
+                <button class="cm-icbtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></button>
+                <button class="cm-icbtn danger"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M19 6l-1 14H6L5 6"/></svg></button>
+              </div>
+            </article>
+
+            <article class="cm-file" data-search="testimonial-avatar-1.jpg testimonials">
+              <div class="cm-thumb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
+              <div class="cm-file__info">
+                <p class="cm-file__name">testimonial-avatar-1.jpg</p>
+                <p class="cm-file__meta">Testimonials</p>
+              </div>
+              <div class="cm-file__meta-row">
+                <p class="cm-file__col">0.2 MB</p>
+                <p class="cm-file__col">400×400</p>
+                <p class="cm-file__col">2024-09-09</p>
+              </div>
+              <div class="cm-file__actions">
+                <button class="cm-icbtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></button>
+                <button class="cm-icbtn danger"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18"/><path d="M8 6V4h8v2"/><path d="M19 6l-1 14H6L5 6"/></svg></button>
+              </div>
+            </article>
+          </div>
+
+          <div class="cm-guidelines">
+            <h4>Image Guidelines</h4>
+            <ul>
+              <li>Recommended formats: JPG, PNG, WebP</li>
+              <li>Max file size: 5MB</li>
+              <li>Hero images: 1920×1080px or higher</li>
+              <li>Thumbnails: 400×400px minimum</li>
+            </ul>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <div class="cm-toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="content-management.js"></script>
+</body>
+</html>
