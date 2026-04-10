@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Performance Insights — CarOS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="performance-insights.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar" id="sidebar" aria-label="Main navigation">
+      <div class="sidebar__brand">
+        <div class="sidebar__logo" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 17h14l-1-7H6l-1 7zM6 17v3h4v-3M14 17v3h4v-3"/>
+            <path d="M7 10l1-5h8l1 5"/>
+          </svg>
+        </div>
+        <span class="sidebar__title">CarOS</span>
+        <button type="button" class="sidebar__close" id="sidebarClose" aria-label="Close menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+      <nav class="sidebar__nav">
+        <a class="nav-link" href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg><span>Dashboard</span></a>
+        <a class="nav-link" href="audience-analytics.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19h16M6 17V9l6-4 6 4v8"/><circle cx="8" cy="13" r="1.5"/><circle cx="16" cy="13" r="1.5"/></svg><span>Application</span></a>
+        <a class="nav-link" href="content-management.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s8-4.5 8-11a8 8 0 10-16 0c0 6.5 8 11 8 11z"/><circle cx="12" cy="10" r="3"/></svg><span>edit</span></a>
+        <a class="nav-link" href="oil-monitor.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg><span>Oil Monitor</span></a>
+        <a class="nav-link nav-link--active" href="performance-insights.html" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19V5"/><path d="M4 19h16"/><path d="M8 17V9"/><path d="M12 17V5"/><path d="M16 17v-5"/></svg><span>Insights</span></a>
+        <a class="nav-link" href="driver-profile.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>Profile</a>
+        <a class="nav-link" href="settings.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg><span>Settings</span></a>
+      </nav>
+      <div class="sidebar__footer">
+        <div class="premium-card">
+          <p class="premium-card__label">Premium Member</p>
+          <p class="premium-card__sub">All features unlocked.</p>
+        </div>
+      </div>
+    </aside>
+
+    <div class="overlay" id="overlay" aria-hidden="true"></div>
+
+    <div class="main-wrap">
+      <button type="button" class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="sidebar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      </button>
+
+      <header class="topbar pi-topbar">
+        <div class="topbar__inner">
+          <div class="topbar__welcome">
+            <h1>Performance Insights</h1>
+            <p>Realtime growth and quality metrics</p>
+          </div>
+          <div class="search" role="search">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+            <input type="search" placeholder="Search insights..." aria-label="Search insights">
+          </div>
+          <div class="topbar__tools">
+            <button type="button" class="icon-btn" aria-label="Notifications">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+              <span class="badge-count">3</span>
+            </button>
+            <button type="button" class="icon-btn" aria-label="Settings">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+            </button>
+            <div class="user-pill">
+              <div class="user-pill__avatar" aria-hidden="true"></div>
+              <div class="user-pill__text">
+                <span class="user-pill__name">John Driver</span>
+                <span class="user-pill__tier">Premium</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="page">
+        <section class="pi-grid-4" aria-label="Top metrics">
+          <article class="pi-kpi">
+            <div class="pi-kpi__head">
+              <div class="pi-kpi__icon g-blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 4-6"/></svg></div>
+              <span class="pi-kpi__chip chip-up">+14%</span>
+            </div>
+            <div class="pi-kpi__value">47.8K</div>
+            <div class="pi-kpi__label">Monthly Reach</div>
+          </article>
+          <article class="pi-kpi">
+            <div class="pi-kpi__head">
+              <div class="pi-kpi__icon g-magenta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
+              <span class="pi-kpi__chip chip-up">+9%</span>
+            </div>
+            <div class="pi-kpi__value">179,505</div>
+            <div class="pi-kpi__label">Impressions</div>
+          </article>
+          <article class="pi-kpi">
+            <div class="pi-kpi__head">
+              <div class="pi-kpi__icon g-green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20V10M18 20V4M6 20v-4"/></svg></div>
+              <span class="pi-kpi__chip chip-up">+11%</span>
+            </div>
+            <div class="pi-kpi__value">8.3%</div>
+            <div class="pi-kpi__label">Engagement Rate</div>
+          </article>
+          <article class="pi-kpi">
+            <div class="pi-kpi__head">
+              <div class="pi-kpi__icon g-amber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+              <span class="pi-kpi__chip chip-down">-2%</span>
+            </div>
+            <div class="pi-kpi__value">78%</div>
+            <div class="pi-kpi__label">Completion Quality</div>
+          </article>
+        </section>
+
+        <section class="pi-panel">
+          <div class="pi-panel__head">
+            <h2>Audience Growth</h2>
+            <span class="pi-pill">Last 30 days</span>
+          </div>
+          <div class="pi-bars">
+            <div class="pi-bars__row"><span class="pi-bars__label">Mon</span><div class="pi-track"><div class="pi-fill" style="width:74%;background:#3b82f6"></div></div><span class="pi-bars__value">22.4k</span></div>
+            <div class="pi-bars__row"><span class="pi-bars__label">Tue</span><div class="pi-track"><div class="pi-fill" style="width:88%;background:#a855f7"></div></div><span class="pi-bars__value">26.7k</span></div>
+            <div class="pi-bars__row"><span class="pi-bars__label">Wed</span><div class="pi-track"><div class="pi-fill" style="width:66%;background:#f97316"></div></div><span class="pi-bars__value">20.1k</span></div>
+            <div class="pi-bars__row"><span class="pi-bars__label">Thu</span><div class="pi-track"><div class="pi-fill" style="width:79%;background:#22c55e"></div></div><span class="pi-bars__value">24.3k</span></div>
+            <div class="pi-bars__row"><span class="pi-bars__label">Fri</span><div class="pi-track"><div class="pi-fill" style="width:92%;background:#14b8a6"></div></div><span class="pi-bars__value">27.8k</span></div>
+            <div class="pi-bars__row"><span class="pi-bars__label">Sat</span><div class="pi-track"><div class="pi-fill" style="width:58%;background:#6366f1"></div></div><span class="pi-bars__value">17.6k</span></div>
+            <div class="pi-bars__row"><span class="pi-bars__label">Sun</span><div class="pi-track"><div class="pi-fill" style="width:70%;background:#f59e0b"></div></div><span class="pi-bars__value">21.0k</span></div>
+          </div>
+        </section>
+
+        <div class="pi-split">
+          <section class="pi-panel">
+            <div class="pi-panel__head">
+              <h2>Engagement Matrix</h2>
+              <span class="pi-pill">Weekly</span>
+            </div>
+            <div class="pi-table-wrap">
+              <table class="pi-table">
+                <thead>
+                  <tr>
+                    <th>Channel</th>
+                    <th>Views</th>
+                    <th>Clicks</th>
+                    <th>CTR</th>
+                    <th>Trend</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>Feed</td><td>48,120</td><td>5,214</td><td>10.8%</td><td class="pos">+4.2%</td></tr>
+                  <tr><td>Stories</td><td>32,845</td><td>2,891</td><td>8.8%</td><td class="pos">+2.1%</td></tr>
+                  <tr><td>Reels</td><td>69,540</td><td>8,772</td><td>12.6%</td><td class="pos">+5.8%</td></tr>
+                  <tr><td>Email</td><td>14,230</td><td>1,092</td><td>7.7%</td><td class="neg">-1.4%</td></tr>
+                  <tr><td>Ads</td><td>41,005</td><td>3,652</td><td>8.9%</td><td class="pos">+0.9%</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="pi-panel">
+            <div class="pi-panel__head">
+              <h2>Top Content</h2>
+              <span class="pi-pill">By Performance</span>
+            </div>
+            <div class="pi-list">
+              <article class="pi-item">
+                <div class="pi-item__head"><p class="pi-item__title">Spring Launch Campaign</p><span class="pi-item__chip">+18%</span></div>
+                <p class="pi-item__meta">52.1k reach · 4.8k clicks · 2h ago</p>
+              </article>
+              <article class="pi-item">
+                <div class="pi-item__head"><p class="pi-item__title">Weekly Product Roundup</p><span class="pi-item__chip">+11%</span></div>
+                <p class="pi-item__meta">39.7k reach · 3.2k clicks · 5h ago</p>
+              </article>
+              <article class="pi-item">
+                <div class="pi-item__head"><p class="pi-item__title">Behind The Scenes Reel</p><span class="pi-item__chip">+9%</span></div>
+                <p class="pi-item__meta">28.3k reach · 2.6k clicks · 1 day ago</p>
+              </article>
+            </div>
+          </section>
+        </div>
+
+        <div class="pi-split">
+          <section class="pi-panel">
+            <div class="pi-panel__head">
+              <h2>Performance by Category</h2>
+              <span class="pi-pill">Current</span>
+            </div>
+            <div class="pi-category">
+              <div class="pi-category__row">
+                <div>
+                  <p class="pi-category__name">Awareness</p>
+                  <p class="pi-category__sub">Top funnel visibility</p>
+                </div>
+                <p class="pi-category__val">92%</p>
+              </div>
+              <div class="pi-track"><div class="pi-fill" style="width:92%;background:#22c55e"></div></div>
+              <div class="pi-category__row">
+                <div>
+                  <p class="pi-category__name">Consideration</p>
+                  <p class="pi-category__sub">Engagement quality</p>
+                </div>
+                <p class="pi-category__val">76%</p>
+              </div>
+              <div class="pi-track"><div class="pi-fill" style="width:76%;background:#3b82f6"></div></div>
+              <div class="pi-category__row">
+                <div>
+                  <p class="pi-category__name">Conversion</p>
+                  <p class="pi-category__sub">Purchase intent</p>
+                </div>
+                <p class="pi-category__val">63%</p>
+              </div>
+              <div class="pi-track"><div class="pi-fill" style="width:63%;background:#f59e0b"></div></div>
+              <div class="pi-category__row">
+                <div>
+                  <p class="pi-category__name">Retention</p>
+                  <p class="pi-category__sub">Repeat users</p>
+                </div>
+                <p class="pi-category__val">48%</p>
+              </div>
+              <div class="pi-track"><div class="pi-fill" style="width:48%;background:#ef4444"></div></div>
+            </div>
+          </section>
+
+          <section class="pi-panel">
+            <div class="pi-panel__head">
+              <h2>Realtime Activity</h2>
+              <span class="pi-pill">Live</span>
+            </div>
+            <div class="pi-activity">
+              <div class="pi-activity__row">
+                <span class="pi-dot" style="background:#22c55e"></span>
+                <div>
+                  <p class="pi-activity__name">New subscription from campaign</p>
+                  <p class="pi-activity__desc">Landing page /spring-offer converted</p>
+                </div>
+                <span class="pi-activity__time">1m ago</span>
+              </div>
+              <div class="pi-activity__row">
+                <span class="pi-dot" style="background:#3b82f6"></span>
+                <div>
+                  <p class="pi-activity__name">Content shared on social</p>
+                  <p class="pi-activity__desc">Reel repost increased reach by 2.3k</p>
+                </div>
+                <span class="pi-activity__time">4m ago</span>
+              </div>
+              <div class="pi-activity__row">
+                <span class="pi-dot" style="background:#f59e0b"></span>
+                <div>
+                  <p class="pi-activity__name">Warning: drop in email CTR</p>
+                  <p class="pi-activity__desc">Segment B dropped below 7%</p>
+                </div>
+                <span class="pi-activity__time">12m ago</span>
+              </div>
+              <div class="pi-activity__row">
+                <span class="pi-dot" style="background:#ef4444"></span>
+                <div>
+                  <p class="pi-activity__name">Ad set paused automatically</p>
+                  <p class="pi-activity__desc">Low quality score threshold reached</p>
+                </div>
+                <span class="pi-activity__time">21m ago</span>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <div class="pi-bottom">
+          <section class="pi-panel">
+            <div class="pi-panel__head">
+              <h2>User Demographics</h2>
+              <span class="pi-pill">Updated hourly</span>
+            </div>
+            <div class="pi-bars">
+              <div class="pi-bars__row"><span class="pi-bars__label">18-24</span><div class="pi-track"><div class="pi-fill" style="width:24%;background:#3b82f6"></div></div><span class="pi-bars__value">24%</span></div>
+              <div class="pi-bars__row"><span class="pi-bars__label">25-34</span><div class="pi-track"><div class="pi-fill" style="width:37%;background:#8b5cf6"></div></div><span class="pi-bars__value">37%</span></div>
+              <div class="pi-bars__row"><span class="pi-bars__label">35-44</span><div class="pi-track"><div class="pi-fill" style="width:22%;background:#22c55e"></div></div><span class="pi-bars__value">22%</span></div>
+              <div class="pi-bars__row"><span class="pi-bars__label">45-54</span><div class="pi-track"><div class="pi-fill" style="width:12%;background:#f59e0b"></div></div><span class="pi-bars__value">12%</span></div>
+              <div class="pi-bars__row"><span class="pi-bars__label">55+</span><div class="pi-track"><div class="pi-fill" style="width:5%;background:#ef4444"></div></div><span class="pi-bars__value">5%</span></div>
+            </div>
+            <div class="pi-card-kv">
+              <div class="pi-card-kv__item"><strong>52%</strong><span>Male</span></div>
+              <div class="pi-card-kv__item"><strong>46%</strong><span>Female</span></div>
+              <div class="pi-card-kv__item"><strong>2%</strong><span>Other</span></div>
+            </div>
+          </section>
+
+          <section class="pi-panel">
+            <div class="pi-panel__head">
+              <h2>Brand Sentiment</h2>
+              <span class="pi-pill">AI Scored</span>
+            </div>
+            <div class="pi-sentiment">
+              <p class="pi-sentiment__score">87%</p>
+              <p class="pi-sentiment__label">Positive sentiment score</p>
+            </div>
+            <div class="pi-list" style="margin-top:1rem">
+              <article class="pi-item">
+                <div class="pi-item__head"><p class="pi-item__title">Top Positive Topic</p><span class="pi-item__chip">+23%</span></div>
+                <p class="pi-item__meta">Product reliability and support quality</p>
+              </article>
+              <article class="pi-item">
+                <div class="pi-item__head"><p class="pi-item__title">Top Negative Topic</p><span class="neg">-6%</span></div>
+                <p class="pi-item__meta">Delivery delays and response times</p>
+              </article>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      var sidebar = document.getElementById("sidebar");
+      var overlay = document.getElementById("overlay");
+      var menuBtn = document.getElementById("menuBtn");
+      var closeBtn = document.getElementById("sidebarClose");
+      function openNav() {
+        sidebar.classList.add("is-open");
+        overlay.classList.add("is-open");
+        menuBtn.setAttribute("aria-expanded", "true");
+        document.body.style.overflow = "hidden";
+      }
+      function closeNav() {
+        sidebar.classList.remove("is-open");
+        overlay.classList.remove("is-open");
+        menuBtn.setAttribute("aria-expanded", "false");
+        document.body.style.overflow = "";
+      }
+      menuBtn.addEventListener("click", openNav);
+      closeBtn.addEventListener("click", closeNav);
+      overlay.addEventListener("click", closeNav);
+      window.addEventListener("resize", function () {
+        if (window.innerWidth > 768) closeNav();
+      });
+    })();
+  </script>
+</body>
+</html>
