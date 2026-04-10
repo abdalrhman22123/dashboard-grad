@@ -1,0 +1,371 @@
+/* Settings page styles (extends style.css) */
+
+.st-topbar .topbar__welcome h1 {
+  font-weight: 600;
+}
+
+.st-topbar .topbar__welcome p {
+  font-size: 0.8rem;
+}
+
+.st-actions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.st-btn {
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  color: var(--text-muted);
+  border-radius: 10px;
+  padding: 0.5rem 0.82rem;
+  font-size: 0.83rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.st-btn svg {
+  width: 15px;
+  height: 15px;
+}
+
+.st-btn--primary {
+  background: rgba(59, 130, 246, 0.2);
+  border-color: rgba(59, 130, 246, 0.35);
+  color: #bfdbfe;
+}
+
+.st-layout {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 1rem;
+}
+
+.st-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1rem;
+}
+
+.st-side-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.st-tab {
+  border: 1px solid var(--border);
+  background: var(--bg-card-elevated);
+  color: var(--text-muted);
+  border-radius: 10px;
+  padding: 0.65rem 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 0.9rem;
+}
+
+.st-tab svg {
+  width: 17px;
+  height: 17px;
+}
+
+.st-tab.is-active {
+  background: rgba(59, 130, 246, 0.16);
+  color: #bfdbfe;
+  border-color: rgba(59, 130, 246, 0.35);
+}
+
+.st-page-title {
+  font-size: 2rem;
+  line-height: 1.05;
+}
+
+.st-subtitle {
+  color: var(--text-muted);
+  margin-top: 0.28rem;
+}
+
+.st-main-head {
+  margin-bottom: 0.9rem;
+}
+
+.st-panel {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.st-panel:last-child {
+  margin-bottom: 0;
+}
+
+.st-panel h3 {
+  font-size: 1.75rem;
+  line-height: 1.1;
+  margin-bottom: 0.25rem;
+}
+
+.st-panel .st-help {
+  color: var(--text-muted);
+  margin-bottom: 0.9rem;
+}
+
+/* Profile picture block */
+.st-profile {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg-card-elevated);
+  padding: 0.9rem;
+}
+
+.st-profile h4 {
+  margin-bottom: 0.8rem;
+  font-size: 1.45rem;
+}
+
+.st-profile-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.st-avatar-wrap {
+  position: relative;
+  width: 96px;
+  height: 96px;
+}
+
+.st-avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  object-fit: cover;
+  background: #111827;
+}
+
+.st-avatar-fallback {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  border: 2px dashed #6b7280;
+  display: grid;
+  place-items: center;
+  color: #9ca3af;
+}
+
+.st-avatar-fallback svg {
+  width: 44px;
+  height: 44px;
+}
+
+.st-avatar-badge {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid var(--bg-card);
+  background: #2563eb;
+  display: grid;
+  place-items: center;
+  color: #fff;
+}
+
+.st-avatar-badge svg {
+  width: 14px;
+  height: 14px;
+}
+
+.st-photo-info p {
+  color: var(--text-muted);
+}
+
+.st-photo-actions {
+  margin-top: 0.55rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.st-btn-small {
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  color: var(--text-muted);
+  border-radius: 9px;
+  padding: 0.44rem 0.7rem;
+  font-size: 0.8rem;
+}
+
+.st-btn-small--blue {
+  background: rgba(37, 99, 235, 0.2);
+  border-color: rgba(37, 99, 235, 0.35);
+  color: #bfdbfe;
+}
+
+.st-btn-small--warn {
+  background: rgba(245, 158, 11, 0.18);
+  border-color: rgba(245, 158, 11, 0.32);
+  color: #fcd34d;
+}
+
+.st-btn-small--danger {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: rgba(239, 68, 68, 0.35);
+  color: #fecaca;
+}
+
+/* Form grid */
+.st-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.st-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.st-field--full {
+  grid-column: 1 / -1;
+}
+
+.st-field label {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.st-input {
+  border: 1px solid var(--border);
+  background: var(--bg-card-elevated);
+  color: var(--text);
+  border-radius: 10px;
+  padding: 0.58rem 0.68rem;
+  font: inherit;
+}
+
+.st-input-wrap {
+  border: 1px solid var(--border);
+  background: var(--bg-card-elevated);
+  color: var(--text);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.5rem 0.62rem;
+}
+
+.st-input-wrap svg {
+  width: 15px;
+  height: 15px;
+  color: var(--text-muted);
+}
+
+.st-input-wrap input {
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: var(--text);
+  outline: none;
+  font: inherit;
+}
+
+.st-actions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.st-action-row {
+  border: 1px solid var(--border);
+  background: var(--bg-card-elevated);
+  border-radius: 10px;
+  padding: 0.75rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.9rem;
+  flex-wrap: wrap;
+}
+
+.st-action-row h5 {
+  font-size: 0.9rem;
+}
+
+.st-action-row p {
+  color: var(--text-muted);
+  font-size: 0.78rem;
+}
+
+.st-toast {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 80;
+  background: #0f172a;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  color: #e2e8f0;
+  border-radius: 10px;
+  padding: 0.7rem 0.9rem;
+  font-size: 0.82rem;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  pointer-events: none;
+}
+
+.st-toast.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.is-hidden {
+  display: none !important;
+}
+
+@media (max-width: 1080px) {
+  .st-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .st-side-nav {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .st-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .st-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .st-page-title {
+    font-size: 1.45rem;
+  }
+
+  .st-panel h3 {
+    font-size: 1.35rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .st-side-nav {
+    grid-template-columns: 1fr;
+  }
+}
