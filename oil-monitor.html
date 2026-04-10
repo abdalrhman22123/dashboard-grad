@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oil Monitor — CarOS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="oil-monitor.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar" id="sidebar" aria-label="Main navigation">
+      <div class="sidebar__brand">
+        <div class="sidebar__logo" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 17h14l-1-7H6l-1 7zM6 17v3h4v-3M14 17v3h4v-3"/><path d="M7 10l1-5h8l1 5"/>
+          </svg>
+        </div>
+        <div class="sidebar__titles">
+          <span class="sidebar__name">CarOS</span>
+          <span class="sidebar__tag">Dashboard</span>
+        </div>
+        <button type="button" class="sidebar__close" id="sidebarClose" aria-label="Close menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <nav class="sidebar__nav">
+        <a class="nav-link" href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg><span>Dashboard</span></a>
+        <a class="nav-link" href="audience-analytics.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19h16M6 17V9l6-4 6 4v8"/><circle cx="8" cy="13" r="1.5"/><circle cx="16" cy="13" r="1.5"/></svg><span>Application</span></a>
+        <a class="nav-link" href="content-management.html" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s8-4.5 8-11a8 8 0 10-16 0c0 6.5 8 11 8 11z"/><circle cx="12" cy="10" r="3"/></svg><span>Edit</span></a>
+        <a class="nav-link nav-link--active" href="#" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg><span>Oil Monitor</span></a>
+        <a class="nav-link" href="performance-insights.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19V5"/><path d="M4 19h16"/><path d="M8 17V9"/><path d="M12 17V5"/><path d="M16 17v-5"/></svg><span>Insights</span></a>
+        <a class="nav-link" href="driver-profile.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>Profile</span></a>
+        <a class="nav-link" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg><span>Settings</span></a>
+      </nav>
+
+      <div class="sidebar__footer">
+        <div class="premium-card">
+          <p class="premium-card__title">Premium Member</p>
+          <p class="premium-card__desc">All features unlocked</p>
+        </div>
+      </div>
+    </aside>
+
+    <div class="overlay" id="overlay" aria-hidden="true"></div>
+
+    <div class="main-wrap">
+      <button type="button" class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="sidebar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+      </button>
+
+      <header class="topbar">
+        <div class="topbar__inner">
+          <div class="topbar__welcome">
+            <h1>Oil Monitor</h1>
+            <p>Engine health, consumption, and system status</p>
+          </div>
+          <div class="search" role="search">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+            <input type="search" placeholder="Search metrics..." aria-label="Search metrics">
+          </div>
+          <div class="topbar__tools">
+            <button type="button" class="icon-btn" aria-label="Notifications">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+              <span class="badge-count">3</span>
+            </button>
+            <button type="button" class="icon-btn" aria-label="Quick settings">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+            </button>
+            <div class="user-pill">
+              <div class="user-pill__avatar" aria-hidden="true"></div>
+              <div class="user-pill__text">
+                <span class="user-pill__name">John Driver</span>
+                <span class="user-pill__tier">Premium</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="page om-page">
+        <!-- Health score -->
+        <section class="om-card om-card--score" aria-labelledby="om-score-title">
+          <h2 id="om-score-title" class="om-sr-only">Health score</h2>
+          <div class="om-donut-wrap">
+            <svg class="om-donut" viewBox="0 0 120 120" aria-hidden="true">
+              <circle class="om-donut__track" cx="60" cy="60" r="52" fill="none" stroke-width="10"/>
+              <circle class="om-donut__fill" cx="60" cy="60" r="52" fill="none" stroke-width="10" stroke-linecap="round" transform="rotate(-90 60 60)"/>
+            </svg>
+            <div class="om-donut__label"><span class="om-donut__pct" data-target="85">0</span><span class="om-donut__pct-suffix">%</span></div>
+          </div>
+          <dl class="om-score-rows">
+            <div class="om-score-row"><dt>Total score</dt><dd>850 / 1000</dd></div>
+            <div class="om-score-row"><dt>Critical issues</dt><dd class="om-text-warn">2</dd></div>
+            <div class="om-score-row"><dt>Warnings</dt><dd class="om-text-orange">5</dd></div>
+            <div class="om-score-row"><dt>Last check</dt><dd class="om-text-muted">Today, 8:42 AM</dd></div>
+          </dl>
+          <div class="om-legend" role="list">
+            <span class="om-legend__item" role="listitem"><span class="om-dot om-dot--ok"></span> Good</span>
+            <span class="om-legend__item" role="listitem"><span class="om-dot om-dot--mid"></span> Fair</span>
+            <span class="om-legend__item" role="listitem"><span class="om-dot om-dot--bad"></span> Poor</span>
+          </div>
+        </section>
+
+        <!-- Reliability -->
+        <section class="om-card" aria-labelledby="om-rel-title">
+          <h2 id="om-rel-title" class="om-card__title">Reliability index</h2>
+          <p class="om-rel-big"><span class="om-rel-num" data-target="78">0</span></p>
+          <div class="om-bar om-bar--hero" role="img" aria-label="Primary reliability 82 percent">
+            <span class="om-bar__fill om-bar__fill--orange" style="--w: 82%"></span>
+          </div>
+          <div class="om-bar-group">
+            <div class="om-bar om-bar--thin" role="img" aria-label="Sub metric 64 percent"><span class="om-bar__fill om-bar__fill--green" style="--w: 64%"></span></div>
+            <div class="om-bar om-bar--thin" role="img" aria-label="Sub metric 71 percent"><span class="om-bar__fill om-bar__fill--orange" style="--w: 71%"></span></div>
+          </div>
+          <div class="om-alert">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg>
+            <p>Oil change recommended within <strong>500 mi</strong> based on driving pattern.</p>
+          </div>
+        </section>
+
+        <!-- Gauges -->
+        <section class="om-card" aria-labelledby="om-gauge-title">
+          <h2 id="om-gauge-title" class="om-card__title">Live gauges</h2>
+          <div class="om-gauge">
+            <div class="om-gauge__head"><span>Viscosity index</span><span class="om-gauge__val">45</span></div>
+            <div class="om-scale">
+              <span class="om-scale__fill" style="--p: 45%"></span>
+            </div>
+          </div>
+          <div class="om-gauge">
+            <div class="om-gauge__head"><span>Oil temperature</span><span class="om-gauge__val">210°</span></div>
+            <div class="om-scale om-scale--heat" role="img" aria-label="Temperature gauge at 210 degrees">
+              <span class="om-scale__marker" style="--p: 65%"></span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Consumption trend -->
+        <section class="om-card" aria-labelledby="om-trend-title">
+          <div class="om-card__head">
+            <h2 id="om-trend-title" class="om-card__title">Consumption trend</h2>
+          </div>
+          <div class="om-chart" role="img" aria-label="Oil consumption trend over last 7 days">
+            <svg class="om-chart__svg" viewBox="0 0 400 120" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="omChartGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="rgba(59,130,246,0.35)"/>
+                  <stop offset="100%" stop-color="rgba(59,130,246,0)"/>
+                </linearGradient>
+              </defs>
+              <path class="om-chart__area" d=""/>
+              <path class="om-chart__line" fill="none" stroke-width="2.5" d=""/>
+            </svg>
+          </div>
+          <div class="om-stat-row">
+            <div class="om-stat"><span class="om-stat__val">1.2</span><span class="om-stat__lbl">Avg L/100km</span></div>
+            <div class="om-stat"><span class="om-stat__val">−3%</span><span class="om-stat__lbl">vs last week</span></div>
+            <div class="om-stat"><span class="om-stat__val">Peak Tue</span><span class="om-stat__lbl">Highest use</span></div>
+          </div>
+          <div class="om-banner om-banner--info">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+            <p>Trend is stable. No abnormal burn detected in the selected window.</p>
+          </div>
+        </section>
+
+        <!-- Storage -->
+        <section class="om-card" aria-labelledby="om-storage-title">
+          <div class="om-card__head">
+            <h2 id="om-storage-title" class="om-card__title">Main storage</h2>
+            <button type="button" class="link-quiet om-link-btn">View details</button>
+          </div>
+          <div class="om-storage-banner">
+            <span class="om-storage-banner__nums"><strong>3500</strong> / <span>45</span></span>
+            <span class="om-storage-banner__sub">MB used · GB total capacity (sync)</span>
+          </div>
+          <ul class="om-storage-list">
+            <li>
+              <span class="om-storage-list__name">Logs</span>
+              <div class="om-bar om-bar--thin"><span class="om-bar__fill om-bar__fill--blue" style="--w: 38%"></span></div>
+              <span class="om-storage-list__pct">38%</span>
+            </li>
+            <li>
+              <span class="om-storage-list__name">Diagnostics</span>
+              <div class="om-bar om-bar--thin"><span class="om-bar__fill om-bar__fill--green" style="--w: 52%"></span></div>
+              <span class="om-storage-list__pct">52%</span>
+            </li>
+            <li>
+              <span class="om-storage-list__name">Media cache</span>
+              <div class="om-bar om-bar--thin"><span class="om-bar__fill om-bar__fill--orange" style="--w: 24%"></span></div>
+              <span class="om-storage-list__pct">24%</span>
+            </li>
+          </ul>
+          <button type="button" class="om-btn om-btn--block">Detailed analysis</button>
+        </section>
+
+        <!-- Activity -->
+        <section class="om-card" aria-labelledby="om-act-title">
+          <div class="om-card__head">
+            <h2 id="om-act-title" class="om-card__title">Activity history</h2>
+            <a class="link-quiet" href="#">View all</a>
+          </div>
+          <div class="om-table-wrap">
+            <table class="om-table">
+              <thead>
+                <tr>
+                  <th scope="col">Event</th>
+                  <th scope="col">ID</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <div class="om-act-cell">
+                      <span class="om-act-icon" aria-hidden="true"></span>
+                      <div><strong>Oil level check</strong><span class="om-act-time">Today, 8:42 AM</span></div>
+                    </div>
+                  </td>
+                  <td data-label="ID">#CHK-2041</td>
+                  <td data-label="Status"><span class="om-tag om-tag--ok">OK</span></td>
+                  <td data-label="Value">98%</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="om-act-cell">
+                      <span class="om-act-icon" aria-hidden="true"></span>
+                      <div><strong>Sensor calibration</strong><span class="om-act-time">Yesterday</span></div>
+                    </div>
+                  </td>
+                  <td data-label="ID">#CAL-1188</td>
+                  <td data-label="Status"><span class="om-tag om-tag--ok">OK</span></td>
+                  <td data-label="Value">—</td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="om-act-cell">
+                      <span class="om-act-icon" aria-hidden="true"></span>
+                      <div><strong>Warning: temp spike</strong><span class="om-act-time">Mon, 3:12 PM</span></div>
+                    </div>
+                  </td>
+                  <td data-label="ID">#WRN-0092</td>
+                  <td data-label="Status"><span class="om-tag om-tag--warn">Review</span></td>
+                  <td data-label="Value">102°C</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="om-footer-stats">
+            <div class="om-mini-stat"><span class="om-mini-stat__val">24</span><span class="om-mini-stat__lbl">Total changes</span></div>
+            <div class="om-mini-stat"><span class="om-mini-stat__val">1.2h</span><span class="om-mini-stat__lbl">Avg time</span></div>
+            <div class="om-mini-stat"><span class="om-mini-stat__val">96%</span><span class="om-mini-stat__lbl">Success</span></div>
+          </div>
+        </section>
+
+        <!-- Recommendations -->
+        <section class="om-card om-card--last" aria-labelledby="om-rec-title">
+          <h2 id="om-rec-title" class="om-card__title">Recommendations</h2>
+          <ul class="om-rec-list">
+            <li class="om-rec-item">
+              <div class="om-rec-item__top">
+                <h3>Replace oil filter</h3>
+                <span class="om-pill om-pill--crit">Critical</span>
+              </div>
+              <p class="om-rec-item__desc">Manufacturer interval exceeded by 400 miles.</p>
+              <button type="button" class="om-btn om-btn--block om-btn--soft">Schedule service</button>
+            </li>
+            <li class="om-rec-item">
+              <div class="om-rec-item__top">
+                <h3>Check coolant mix</h3>
+                <span class="om-pill om-pill--high">High</span>
+              </div>
+              <p class="om-rec-item__desc">Correlated with elevated oil temperature readings.</p>
+              <button type="button" class="om-btn om-btn--block om-btn--soft">View correlation</button>
+            </li>
+          </ul>
+          <div class="om-checklist" role="group" aria-label="Quick checklist">
+            <label class="om-check"><input type="checkbox" checked disabled> <span>Weekly visual inspection</span></label>
+            <label class="om-check"><input type="checkbox"> <span>Log last refill date</span></label>
+            <label class="om-check"><input type="checkbox"> <span>Book dealer inspection</span></label>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script src="oil-monitor.js"></script>
+</body>
+</html>
